@@ -45,12 +45,3 @@ function execute(javaClassPaths) {
         console.log('child process exited with code ' + code);
     });
 }
-
-// amazon-kinesis-launcher
-//     - app.js
-//     - package.json
-//     - .env
-//     - .env.example
-//     - lib
-//        - python
-//        - java
