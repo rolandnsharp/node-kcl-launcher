@@ -3,7 +3,6 @@ var dotenv = require('dotenv');
 var path = require('path');
 dotenv.load();
 
-var exports = 'export AWS_ACCESS_KEY_ID=' + process.env.AWS_ACCESS_KEY_ID + ' export AWS_SECRET_ACCESS_KEY=' + process.env.AWS_SECRET_ACCESS_KEY;
 var properties_file_path = process.env.PROPERTIES;
 var properties_file_name = properties_file_path.substring(properties_file_path.lastIndexOf('/') + 1, properties_file_path.length);
 var properties_path = properties_file_path.substring(0, properties_file_path.lastIndexOf('/'));
