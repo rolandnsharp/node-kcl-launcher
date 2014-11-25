@@ -3,7 +3,7 @@ var dotenv = require('dotenv');
 var path = require('path');
 dotenv.load();
 
-
+var exports = 'export AWS_ACCESS_KEY_ID=' + process.env.AWS_ACCESS_KEY_ID + ' export AWS_SECRET_ACCESS_KEY=' + process.env.AWS_SECRET_ACCESS_KEY;
 var properties_file_path = process.env.PROPERTIES;
 var properties_file_name = properties_file_path.substring(properties_file_path.lastIndexOf('/') + 1, properties_file_path.length);
 var properties_path = properties_file_path.substring(0, properties_file_path.lastIndexOf('/'));
@@ -22,26 +22,5 @@ fs.readdir(jarsPath, function(err, dir) {
     });
     javaClassPaths += properties_path;
 
-    if (process.argv[2] === '--print') {
-        console.log(process.env.JAVA, '-cp', javaClassPaths, multi_lang_daemon_class, properties_file_name);
-    } else {
-        execute(javaClassPaths);
-    }
+    console.log(process.env.JAVA, '-cp', javaClassPaths, multi_lang_daemon_class, properties_file_name);;
 });
-
-function execute(javaClassPaths) {
-    var spawn = require('child_process').spawn;
-    var command = spawn(process.env.JAVA, ['-cp', javaClassPaths, multi_lang_daemon_class, properties_file_name]);
-
-    command.stdout.on('data', function(data) {
-        console.log('stdout: ' + data);
-    });
-
-    command.stderr.on('data', function(data) {
-        console.log('stderr: ' + data);
-    });
-
-    command.on('close', function(code) {
-        console.log('child process exited with code ' + code);
-    });
-}
